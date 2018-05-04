@@ -107,3 +107,17 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+/*
+ * Styles for the Success Message
+ */
+
+.memory-solved {
+  width: 660px;
+  min-height: 680px;
+  align-items: center;
+}
+
+.memory-solved .fa-check-circle {
+  font-size: 7em;
+}
