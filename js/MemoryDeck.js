@@ -39,9 +39,8 @@ class MemoryDeck {
   }
 
   cleanUpDeck() {
-    const cardItems = this.deck.getElementsByClassName('card');
-    [].forEach.call(cardItems, (card) => {
-      card.remove();
-    });
+    while(this.deck.hasChildNodes()) {
+      this.deck.removeChild(this.deck.firstChild);
+    }
   }
 }
