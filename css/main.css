@@ -113,6 +113,7 @@ h1 {
  */
 
 .memory-solved {
+  display: none;
   width: 400px;
   min-height: 400px;
   text-align: center;
@@ -120,7 +121,7 @@ h1 {
   background: white;
   border-radius: 10px;
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-  margin-top: 1em;
+  margin-top: 20%;
 }
 
 .memory-solved > * {
@@ -129,5 +130,9 @@ h1 {
 
 .memory-solved .fa-check-circle {
   font-size: 7em;
-  color: green;
+  color: #4BB543;
+}
+
+#successMessage {
+  font-size: 1.4em;
 }

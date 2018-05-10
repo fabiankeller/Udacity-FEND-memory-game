@@ -14,30 +14,31 @@
           </header>
 
           <section class="score-panel">
-          	<ul class="stars">
+          	<ul class="stars" id="scoring">
           		<li><i class="fa fa-star"></i></li>
           		<li><i class="fa fa-star"></i></li>
           		<li><i class="fa fa-star"></i></li>
           	</ul>
 
-          	<span class="moves">3</span> Moves
+          	<span class="moves" id="movesCounter">0</span> Moves
 
-              <div class="restart" id="restartButton">
-          		<i class="fa fa-repeat"></i>
+            <div class="restart" id="restartButton">
+          		<i class="fa fa-repeat"></i> Restart
           	</div>
           </section>
 
           <ul class="deck" id="deck">
           </ul>
-          <div class="memory-solved" id="memorySolved" style="display:none">
+          <div class="memory-solved" id="memorySolved">
             <i class="fa fa-check-circle"></i>
             <h1>Congratulations!!!</h1>
-            <h2>You solved the memory.</h2>
+            <p id="successMessage"></p>
           </div>
       </div>
 
       <script src="js/MemoryDeck.js"></script>
       <script src="js/MemoryCard.js"></script>
       <script src="js/MemoryFlowManager.js"></script>
+      <script src="js/ScoringManager.js"></script>
       <script src="js/app.js"></script>
 </body>

@@ -12,7 +12,7 @@ class MemoryDeck {
     this.cleanUpDeck();
     this.shuffleCards(this.allCardSymbols);
     this.appendCardsToDeck();
-    this.memoryFlowManager.initEventListeners();
+    this.memoryFlowManager.initFlowManager();
   }
 
   appendCardsToDeck() {

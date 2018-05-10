@@ -2,33 +2,23 @@ class MemoryFlowManager {
   constructor(deckId) {
     this.deck = document.getElementById(deckId);
     this.solvedMessage = document.getElementById('memorySolved');
-    this.moves = 0;
-    this.openCards = [];
-    this.matchedCards = [];
+    this.successMessage = document.getElementById('successMessage');
+    this.scoringManager = new ScoringManager();
   }
 
-  initEventListeners() {
+  initFlowManager() {
+    this.openCards = [];
+    this.matchedCards = [];
+    this.displayDeck();
+    this.scoringManager.initScoring();
+    this.initCardEventListeners();
+  }
+
+  initCardEventListeners() {
     const cardElements = this.deck.getElementsByClassName('card');
     for (let cardElement of cardElements) {
       cardElement.addEventListener('click', this.handleClickEventOnCard.bind(this));
     }
-    // document.getElementById('restartButton').addEventListener('click', this.restartMemory.bind(this));
-    // for developing purpose - solve memory automatically
-    // document.getElementById('restartButton').addEventListener('click', () => {
-    //   if (this.matchedCards.length !== 16) {
-    //     const symbols = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube',
-    //                       'leaf', 'bicycle', 'bomb'];
-    //     symbols.forEach((symbol) => {
-    //       const elements = document.getElementsByClassName('fa-' + symbol);
-    //       for (let element of elements) {
-    //         element.parentNode.dispatchEvent(new MouseEvent('click'));
-    //       }
-    //     });
-    //   } else {
-    //     this.restartMemory();
-    //   }
-    // });
-
   }
 
   handleClickEventOnCard(event) {
@@ -37,6 +27,7 @@ class MemoryFlowManager {
       this.openCards.push(event.target);
     }
     if (this.openCards.length === 2) {
+      this.scoringManager.increaseMovesByOne();
       if (this.getCardSymbol(this.openCards[0]) === this.getCardSymbol(this.openCards[1])) {
         this.markOpenCardsAsMatch();
       } else {
@@ -79,27 +70,26 @@ class MemoryFlowManager {
   }
 
   markOpenCardsAsMatch() {
+    this.matchedCards.push(this.openCards[0]);
+    this.matchedCards.push(this.openCards[1]);
     this.openCards.forEach((card) => {
       setTimeout(this.markCardAsMatch.bind(this, card), 1000);
     });
     if (this.matchedCards.length === 16) {
       setTimeout(this.memorySolved.bind(this), 2000);
     }
-    this.matchedCards.push(this.openCards[0]);
-    this.matchedCards.push(this.openCards[1]);
+
     this.openCards = [];
   }
 
   memorySolved() {
     this.deck.style.display = 'none';
     this.solvedMessage.style.display = 'block';
+    this.successMessage.innerHTML = 'You solved the memory in '
+      + this.scoringManager.getMoves() + ' moves.';
   }
 
-  restartMemory() {
-    this.openCards.forEach(this.coverCard);
-    this.matchedCards.forEach(this.coverCard);
-    this.matchedCards = [];
-    this.openCards = [];
+  displayDeck() {
     this.deck.style.display = 'flex';
     this.solvedMessage.style.display = 'none';
   }
