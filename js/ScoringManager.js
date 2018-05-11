@@ -2,6 +2,7 @@ class ScoringManager {
   constructor() {
     this.scoringElement = document.getElementById('scoring');
     this.counterElement = document.getElementById('movesCounter');
+    this.moves = 0;
   }
 
   getMoves() {

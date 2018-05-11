@@ -29,12 +29,17 @@ class MemoryFlowManager {
     }
     if (this.openCards.length === 2) {
       this.scoringManager.increaseMovesByOne();
-      if (this.getCardSymbol(this.openCards[0]) === this.getCardSymbol(this.openCards[1])) {
+      if (this.openCardsDoMatch()) {
         this.markOpenCardsAsMatch();
       } else {
         this.coverOpenCards();
       }
     }
+  }
+
+  openCardsDoMatch() {
+    return this.getCardSymbol(this.openCards[0]) ===
+            this.getCardSymbol(this.openCards[1]);
   }
 
   isNodeOfTypeLI(event) {
@@ -71,8 +76,7 @@ class MemoryFlowManager {
   }
 
   markOpenCardsAsMatch() {
-    this.matchedCards.push(this.openCards[0]);
-    this.matchedCards.push(this.openCards[1]);
+    this.matchedCards.push(this.openCards[0], this.openCards[1]);
     this.openCards.forEach((card) => {
       setTimeout(this.markCardAsMatch.bind(this, card), 1000);
     });
