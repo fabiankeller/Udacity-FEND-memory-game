@@ -1,7 +1,7 @@
 class MemoryDeck {
   constructor(deckId) {
-    this.symbols = ['gem', 'paper-plane', 'anchor', 'bolt', 'cube',
-                      'leaf', 'bicycle', 'bomb'];
+    this.symbols = ['less', 'css3', 'angular', 'git', 'react',
+                      'vuejs', 'sass', 'js'];
     this.allCardSymbols = [...this.symbols, ...this.symbols];
     this.deck = document.getElementById(deckId);
     this.memoryFlowManager = new MemoryFlowManager(deckId);
@@ -46,7 +46,7 @@ class MemoryDeck {
     cardElement.setAttribute('data-symbol', symbol);
 
     const icon = document.createElement('i');
-    icon.setAttribute('class', 'fas fa-' + symbol);
+    icon.setAttribute('class', 'fab fa-' + symbol);
 
     cardElement.appendChild(icon);
     return cardElement;
