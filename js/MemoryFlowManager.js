@@ -10,6 +10,7 @@ class MemoryFlowManager {
     this.openCards = [];
     this.matchedCards = [];
     this.displayDeck();
+    this.hideSuccessMessage();
     this.scoringManager.initScoring();
     this.initCardEventListeners();
   }
@@ -76,22 +77,31 @@ class MemoryFlowManager {
       setTimeout(this.markCardAsMatch.bind(this, card), 1000);
     });
     if (this.matchedCards.length === 16) {
-      setTimeout(this.memorySolved.bind(this), 2000);
+      setTimeout(() => {
+        this.hideDeck();
+        this.displaySuccessMessage();
+      }, 2000);
     }
 
     this.openCards = [];
   }
 
-  memorySolved() {
-    this.deck.style.display = 'none';
+  displaySuccessMessage() {
     this.solvedMessage.style.display = 'block';
     this.successMessage.innerHTML = 'You solved the memory in '
       + this.scoringManager.getMoves() + ' moves.';
   }
 
+  hideSuccessMessage() {
+    this.solvedMessage.style.display = 'none';
+  }
+
   displayDeck() {
     this.deck.style.display = 'flex';
-    this.solvedMessage.style.display = 'none';
+  }
+
+  hideDeck() {
+    this.deck.style.display = 'none';
   }
 
 }
