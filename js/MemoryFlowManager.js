@@ -67,8 +67,13 @@ class MemoryFlowManager {
     card.setAttribute('class', 'card show match');
   }
 
+  markCardAsNoMatch(card) {
+    card.setAttribute('class', 'card show no-match');
+  }
+
   coverOpenCards() {
     this.openCards.forEach((card) => {
+      setTimeout(this.markCardAsNoMatch.bind(this, card), 200);
       setTimeout(this.coverCard.bind(this, card), 1000);
     });
     this.openCards = [];
@@ -77,7 +82,7 @@ class MemoryFlowManager {
   markOpenCardsAsMatch() {
     this.matchedCards.push(this.openCards[0], this.openCards[1]);
     this.openCards.forEach((card) => {
-      setTimeout(this.markCardAsMatch.bind(this, card), 1000);
+      setTimeout(this.markCardAsMatch.bind(this, card), 500);
     });
     if (this.matchedCards.length === 16) {
       setTimeout(() => {

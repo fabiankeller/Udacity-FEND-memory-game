@@ -40,7 +40,7 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #99e4f5 0%, #27b7db 100%);
+    background: linear-gradient(160deg, #99e4f5 0%, #069dc3 100%);
     padding: 32px;
     border-radius: 20px;
     display: flex;
@@ -64,28 +64,46 @@ h1 {
     justify-content: center;
     align-items: center;
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    transition: all 0.4s;
 }
 
 .deck .card.open {
-    transform: rotateY(0deg);
     background: #0293e4;
-    cursor: default;
     transform-style: preserve-3d;
     transition: all 0.4s;
 }
 
-.deck .card.open i {
-    display: inline-block;
-}
-
 .deck .card.show {
     font-size: 40px;
+    transform: rotateY(0deg);
+    cursor: default;
 }
 
 .deck .card.match {
-    transform: rotateY(0deg);
-    cursor: default;
     background: rgb(54, 201, 140, 0.8);
+    animation: shake 0.5s;
+    transition: all 0.5s ease-in-out;
+}
+
+.deck .card.no-match {
+    background: rgb(239, 76, 3, 0.8);
+}
+
+@keyframes shake {
+    0% { transform: translate(-15px, 0px) rotate(-5deg);}
+    20% { transform: translate(15px, 0px) rotate(5deg); }
+    40% { transform: translate(-15px, 0px) rotate(-5deg); }
+    60% { transform: translate(15px, 0px) rotate(5deg); }
+    80% { transform: translate(-15px, 0px) rotate(-5deg); }
+    100% { transform: translate(15px, 0px) rotate(5deg); }
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(0%);}
+    25% { transform: translateY(25%);}
+    50% { transform: translateY(50%);}
+    75% { transform: translateY(75%);}
+    100% { transform: translateY(100%);}
 }
 
 /*
