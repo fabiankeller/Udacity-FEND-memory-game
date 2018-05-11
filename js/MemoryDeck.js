@@ -3,7 +3,6 @@ class MemoryDeck {
     this.symbols = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube',
                       'leaf', 'bicycle', 'bomb'];
     this.allCardSymbols = [...this.symbols, ...this.symbols];
-    this.allMemoryCards = [];
     this.deck = document.getElementById(deckId);
     this.memoryFlowManager = new MemoryFlowManager(deckId);
   }
@@ -18,9 +17,7 @@ class MemoryDeck {
   appendCardsToDeck() {
     const documentFragment = document.createDocumentFragment();
     this.allCardSymbols.forEach((symbol) => {
-      const memoryCard = new MemoryCard(symbol);
-      documentFragment.appendChild(memoryCard.createMemoryCardElement());
-      this.allMemoryCards.push(memoryCard);
+      documentFragment.appendChild(this.createMemoryCardElement(symbol));
     });
     document.getElementById('deck').appendChild(documentFragment);
   }
@@ -42,5 +39,17 @@ class MemoryDeck {
     while(this.deck.hasChildNodes()) {
       this.deck.removeChild(this.deck.firstChild);
     }
+  }
+
+  createMemoryCardElement (symbol) {
+    const cardElement = document.createElement('li');
+    cardElement.setAttribute('class', 'card');
+    cardElement.setAttribute('data-symbol', symbol);
+
+    const icon = document.createElement('i');
+    icon.setAttribute('class', 'fa fa-' + symbol);
+
+    cardElement.appendChild(icon);
+    return cardElement;
   }
 }
