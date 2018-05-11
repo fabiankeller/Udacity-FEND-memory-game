@@ -25,7 +25,6 @@ class MemoryFlowManager {
   handleClickEventOnCard(event) {
     if (this.isNodeOfTypeLI(event) && this.isCardNotYetOpenOrMatched(event)) {
       this.openCard(event.target);
-      this.openCards.push(event.target);
     }
     if (this.openCards.length === 2) {
       this.scoringManager.increaseMovesByOne();
@@ -52,11 +51,11 @@ class MemoryFlowManager {
   }
 
   getCardSymbol(card) {
-    const symbol = card.getAttribute('data-symbol');
-    return symbol;
+    return card.getAttribute('data-symbol');
   }
 
   openCard(card) {
+    this.openCards.push(card);
     card.setAttribute('class', 'card show open');
   }
 

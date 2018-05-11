@@ -10,7 +10,7 @@ class ScoringManager {
   }
 
   getAmountOfStars() {
-    return 3 - Math.floor(this.moves / 10);
+    return Math.max(0, 3 - Math.floor(this.moves / 10));
   }
 
   initScoring() {
@@ -22,7 +22,10 @@ class ScoringManager {
     this.counterElement.innerHTML = this.moves;
     this.cleanUpScoring();
     for (let i = 1; i <= this.getAmountOfStars(); i++) {
-      this.scoringElement.appendChild(this.getStarElement());
+      this.scoringElement.appendChild(this.getStarElement(true));
+    }
+    for (let i = 0; i < (3 - this.getAmountOfStars()); i++) {
+      this.scoringElement.appendChild(this.getStarElement(false));
     }
   }
 
@@ -31,10 +34,11 @@ class ScoringManager {
     this.setScoringOnDeck();
   }
 
-  getStarElement() {
+  getStarElement(filled) {
     const star = document.createElement('li');
     const starIcon = document.createElement('i');
-    starIcon.setAttribute('class', 'fa fa-star');
+    const starStyle = filled ? 'fas' : 'far';
+    starIcon.setAttribute('class', starStyle + ' fa-star');
     star.appendChild(starIcon);
     return star;
   }

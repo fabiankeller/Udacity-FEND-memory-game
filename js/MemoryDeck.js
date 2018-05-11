@@ -1,6 +1,6 @@
 class MemoryDeck {
   constructor(deckId) {
-    this.symbols = ['diamond', 'paper-plane-o', 'anchor', 'bolt', 'cube',
+    this.symbols = ['gem', 'paper-plane', 'anchor', 'bolt', 'cube',
                       'leaf', 'bicycle', 'bomb'];
     this.allCardSymbols = [...this.symbols, ...this.symbols];
     this.deck = document.getElementById(deckId);
@@ -24,7 +24,6 @@ class MemoryDeck {
 
   shuffleCards(cards) {
     let currentIndex = cards.length, temporaryValue, randomIndex;
-
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -47,7 +46,7 @@ class MemoryDeck {
     cardElement.setAttribute('data-symbol', symbol);
 
     const icon = document.createElement('i');
-    icon.setAttribute('class', 'fa fa-' + symbol);
+    icon.setAttribute('class', 'fas fa-' + symbol);
 
     cardElement.appendChild(icon);
     return cardElement;
