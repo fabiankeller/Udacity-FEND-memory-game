@@ -97,7 +97,7 @@ class MemoryFlowHandler {
   displaySuccessMessage() {
     this.solvedMessage.style.display = 'block';
     this.successMessage.innerHTML = 'You solved the memory in '
-      + this.scoringManager.getMoves() + ' moves.';
+      + this.scoringHandler.getMoves() + ' moves.';
   }
 
   hideSuccessMessage() {
