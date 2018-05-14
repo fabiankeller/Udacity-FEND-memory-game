@@ -1,4 +1,4 @@
-class ScoringManager {
+class ScoringHandler {
   constructor() {
     this.scoringElement = document.getElementById('scoring');
     this.counterElement = document.getElementById('movesCounter');
@@ -10,7 +10,18 @@ class ScoringManager {
   }
 
   getAmountOfStars() {
-    return Math.max(0, 3 - Math.floor(this.moves / 10));
+    return Math.max(0, 3 - Math.floor((this.moves - 7) / 7));
+
+    // if (this.moves < 14) {
+    //   return 3;
+    // } else if (this.moves < 20) {
+    //   return 2;
+    // } else if (this.moves < 25) {
+    //   return 1;
+    // } else {
+    //   return 0;
+    // }
+    // return Math.max(0, 3 - Math.floor(this.moves / 10));
   }
 
   initScoring() {

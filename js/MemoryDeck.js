@@ -1,17 +1,17 @@
 class MemoryDeck {
-  constructor(deckId) {
+  constructor() {
     this.symbols = ['less', 'css3', 'angular', 'git', 'react',
                       'vuejs', 'sass', 'js'];
     this.allCardSymbols = [...this.symbols, ...this.symbols];
-    this.deck = document.getElementById(deckId);
-    this.memoryFlowManager = new MemoryFlowManager(deckId);
+    this.deck = document.getElementById('deck');
+    this.memoryFlowHandler = new MemoryFlowHandler(this.deck);
   }
 
   initDeck() {
     this.cleanUpDeck();
     this.shuffleCards(this.allCardSymbols);
     this.appendCardsToDeck();
-    this.memoryFlowManager.initFlowManager();
+    this.memoryFlowHandler.initFlowManager();
   }
 
   appendCardsToDeck() {

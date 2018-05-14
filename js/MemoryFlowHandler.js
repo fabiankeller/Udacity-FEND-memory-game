@@ -1,9 +1,9 @@
-class MemoryFlowManager {
-  constructor(deckId) {
-    this.deck = document.getElementById(deckId);
+class MemoryFlowHandler {
+  constructor(deck) {
+    this.deck = deck;
     this.solvedMessage = document.getElementById('memorySolved');
     this.successMessage = document.getElementById('successMessage');
-    this.scoringManager = new ScoringManager();
+    this.scoringHandler = new ScoringHandler();
   }
 
   initFlowManager() {
@@ -11,7 +11,7 @@ class MemoryFlowManager {
     this.matchedCards = [];
     this.displayDeck();
     this.hideSuccessMessage();
-    this.scoringManager.initScoring();
+    this.scoringHandler.initScoring();
     this.initCardEventListeners();
   }
 
@@ -27,7 +27,7 @@ class MemoryFlowManager {
       this.openCard(event.target);
     }
     if (this.openCards.length === 2) {
-      this.scoringManager.increaseMovesByOne();
+      this.scoringHandler.increaseMovesByOne();
       if (this.openCardsDoMatch()) {
         this.markOpenCardsAsMatch();
       } else {
@@ -73,7 +73,7 @@ class MemoryFlowManager {
 
   coverOpenCards() {
     this.openCards.forEach((card) => {
-      setTimeout(this.markCardAsNoMatch.bind(this, card), 200);
+      setTimeout(this.markCardAsNoMatch.bind(this, card), 100);
       setTimeout(this.coverCard.bind(this, card), 1000);
     });
     this.openCards = [];
@@ -101,7 +101,7 @@ class MemoryFlowManager {
   }
 
   hideSuccessMessage() {
-    this.solvedMessage.style.display = 'none';
+    this.solvedMessage.style.display = 'block';
   }
 
   displayDeck() {
