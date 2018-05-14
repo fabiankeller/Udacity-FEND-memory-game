@@ -38,10 +38,10 @@ h1 {
  */
 
 .deck {
-    width: 660px;
-    min-height: 680px;
+    width: 440px;
+    min-height: 440px;
+    padding: 20px;
     background: linear-gradient(160deg, #99e4f5 0%, #069dc3 100%);
-    padding: 32px;
     border-radius: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -52,8 +52,8 @@ h1 {
 
 .deck .card {
     transform: rotateY(180deg);
-    height: 125px;
-    width: 125px;
+    width: 90px;
+    height: 90px;
     background: rgba(46, 61, 73, 0.8);
     font-size: 0px;
     color: #ffffff;
@@ -160,4 +160,40 @@ h1 {
 
 #successMessage {
   font-size: 1.4em;
+}
+
+@media screen and (min-width: 760px) {
+  .deck {
+    width: 740px;
+    height: 740px;
+    padding: 20px;
+  }
+
+  .deck .card  {
+    width: 145px;
+    height: 145px;
+    margin: 15px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .deck {
+    width: 1040px;
+    height: 1040px;
+    padding: 32px;
+  }
+
+  .deck .card  {
+    width: 195px;
+    height: 195px;
+    margin: 20px;
+  }
+
+  h1 {
+    font-size: 2.3em;
+  }
+
+  .score-panel {
+      font-size: 1.3em;
+  }
 }
