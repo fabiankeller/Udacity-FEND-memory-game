@@ -10,18 +10,8 @@ class ScoringHandler {
   }
 
   getAmountOfStars() {
-    return Math.max(0, 3 - Math.floor((this.moves - 7) / 7));
-
-    // if (this.moves < 14) {
-    //   return 3;
-    // } else if (this.moves < 20) {
-    //   return 2;
-    // } else if (this.moves < 25) {
-    //   return 1;
-    // } else {
-    //   return 0;
-    // }
-    // return Math.max(0, 3 - Math.floor(this.moves / 10));
+    // 3 stars => x < 14, 2 stars => x < 21, 1 star => x < 28, 0 stars => x >= 28
+    return Math.max(0, 3 - Math.max(0, Math.floor((this.moves - 7) / 7)));
   }
 
   initScoring() {
@@ -32,10 +22,11 @@ class ScoringHandler {
   setScoringOnDeck() {
     this.counterElement.innerHTML = this.moves;
     this.cleanUpScoring();
-    for (let i = 1; i <= this.getAmountOfStars(); i++) {
+    const amountOfStars = this.getAmountOfStars();
+    for (let i = 1; i <= amountOfStars; i++) {
       this.scoringElement.appendChild(this.getStarElement(true));
     }
-    for (let i = 0; i < (3 - this.getAmountOfStars()); i++) {
+    for (let i = 0; i < (3 - amountOfStars); i++) {
       this.scoringElement.appendChild(this.getStarElement(false));
     }
   }
