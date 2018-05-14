@@ -101,7 +101,7 @@ class MemoryFlowHandler {
   }
 
   hideSuccessMessage() {
-    this.solvedMessage.style.display = 'block';
+    this.solvedMessage.style.display = 'none';
   }
 
   displayDeck() {
