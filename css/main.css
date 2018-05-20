@@ -104,8 +104,18 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 345px;
     margin-bottom: 10px;
+}
+
+.score-panel .timer {
+  width: 150px;
+  margin: 0 30px;
+  display: inline-block;
+}
+
+.score-panel .moves {
+  width: 20px;
+  display: inline-block;
 }
 
 .score-panel .stars {

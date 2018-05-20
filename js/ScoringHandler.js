@@ -2,7 +2,7 @@ class ScoringHandler {
   constructor() {
     this.scoringElement = document.getElementById('scoring');
     this.counterElement = document.getElementById('movesCounter');
-    this.moves = 0;
+    this.timerElement = document.getElementById('timer');
   }
 
   getMoves() {
@@ -15,8 +15,11 @@ class ScoringHandler {
   }
 
   initScoring() {
+    this.timer = 0;
     this.moves = 0;
     this.setScoringOnDeck();
+    this.timerElement.innerHTML = this.formatTimer();
+    this.timerActive = false;
   }
 
   setScoringOnDeck() {
@@ -29,6 +32,36 @@ class ScoringHandler {
     for (let i = 0; i < (3 - amountOfStars); i++) {
       this.scoringElement.appendChild(this.getStarElement(false));
     }
+  }
+
+  startTimer() {
+    this.timerActive = true;
+    setTimeout(this.increaseTimer.bind(this), 1000);
+  }
+
+  stopTimer() {
+    this.timerActive = false;
+  }
+
+  increaseTimer() {
+    if (this.timerActive) {
+      this.timer += 1;
+      this.timerElement.innerHTML = this.formatTimer();
+      setTimeout(this.increaseTimer.bind(this), 1000);
+    }
+  }
+
+  formatTimer() {
+    const minutes = Math.floor(this.timer / 60);
+    const seconds = this.timer % 60;
+    let time = '';
+    time += (minutes < 10 ? '0' : '') + minutes + ' Min ';
+    time += (seconds < 10 ? '0' : '') + seconds + ' Sec'
+    return time;
+  }
+
+  isTimerStarted() {
+    return this.timerActive;
   }
 
   increaseMovesByOne() {

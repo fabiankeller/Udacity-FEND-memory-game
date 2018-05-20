@@ -23,6 +23,9 @@ class MemoryFlowHandler {
   }
 
   handleClickEventOnCard(event) {
+    if (!this.scoringHandler.isTimerStarted()) {
+      this.scoringHandler.startTimer();
+    }
     if (this.isNodeOfTypeLI(event) && this.isCardNotYetOpenOrMatched(event)) {
       this.openCard(event.target);
     }
@@ -89,6 +92,7 @@ class MemoryFlowHandler {
         this.hideDeck();
         this.displaySuccessMessage();
       }, 2000);
+      this.scoringHandler.stopTimer();
     }
 
     this.openCards = [];
@@ -96,8 +100,9 @@ class MemoryFlowHandler {
 
   displaySuccessMessage() {
     this.solvedMessage.style.display = 'block';
-    this.successMessage.innerHTML = 'You solved the memory in '
-      + this.scoringHandler.getMoves() + ' moves.';
+    this.successMessage.innerHTML = '<p>You solved the memory </p>'
+      + '<p>in ' + this.scoringHandler.formatTimer() + '</p>'
+      + '<p>with ' + this.scoringHandler.getMoves() + ' moves.</p>';
   }
 
   hideSuccessMessage() {
