@@ -1,3 +1,7 @@
+/*
+ * This handler takes care of the flow of the memory, managing card flips,
+ * matching cards, show success message etc.
+ */
 class MemoryFlowHandler {
   constructor(deck) {
     this.deck = deck;
@@ -22,6 +26,12 @@ class MemoryFlowHandler {
     }
   }
 
+  /*
+   * Opens card if card is still covered.
+   * Checks if two open cards do match
+   * - if yes mark them as match
+   * - if no cover them again
+   */
   handleClickEventOnCard(event) {
     if (!this.scoringHandler.isTimerStarted()) {
       this.scoringHandler.startTimer();
@@ -82,6 +92,10 @@ class MemoryFlowHandler {
     this.openCards = [];
   }
 
+  /*
+   * Waits half a second till he marks the two open cards as match
+   * If 16 matched cards exist the game is finished.
+   */
   markOpenCardsAsMatch() {
     this.matchedCards.push(this.openCards[0], this.openCards[1]);
     this.openCards.forEach((card) => {

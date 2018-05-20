@@ -1,3 +1,7 @@
+/*
+ * This handler takes care of updating the scoring panel.
+ * This includes updateing the amount of stars and the timer.
+ */
 class ScoringHandler {
   constructor() {
     this.scoringElement = document.getElementById('scoring');
@@ -22,6 +26,9 @@ class ScoringHandler {
     this.timerActive = false;
   }
 
+  /*
+   * Updates amount of filled and not filled stars on page.
+   */
   setScoringOnDeck() {
     this.counterElement.innerHTML = this.moves;
     this.cleanUpScoring();
@@ -51,6 +58,9 @@ class ScoringHandler {
     }
   }
 
+  /*
+   * Returns timer in format '01 Min 09 Sec'
+   */
   formatTimer() {
     const minutes = Math.floor(this.timer / 60);
     const seconds = this.timer % 60;
